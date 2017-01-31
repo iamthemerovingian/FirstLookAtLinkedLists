@@ -1,13 +1,22 @@
 ﻿
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
 namespace FirstLookAtLinkedLists
 {
     class LinkedListNode<T>
     {
+        public LinkedListNode(T value)
+        {
+            Value = value;
+        }
+
         public T Value { get; set; }
         public LinkedListNode<T> Next { get; set; }
     }
 
-    class LinkedList<T>
+    class LinkedList<T> : System.Collections.Generic.IEnumerable<T>
     {
         public LinkedListNode<T> Head { get; private set; }
 
@@ -82,6 +91,26 @@ namespace FirstLookAtLinkedLists
                 }
 
                 Count--;
+            }
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            LinkedListNode<T> currentNode = Head;
+            while (currentNode != null)
+            {
+                yield return currentNode.Value;
+                currentNode = currentNode.Next;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            LinkedListNode<T> currentNode = Head;
+            while (currentNode != null)
+            {
+                yield return currentNode.Value;
+                currentNode = currentNode.Next;
             }
         }
     }

@@ -40,18 +40,24 @@ namespace FirstLookAtLinkedLists
             //mySecondLinkedList.RemoveLast();
             //Console.WriteLine("Count is: " + mySecondLinkedList.Count);
 
-            mySecondLinkedList.RemoveFirst();
-            Console.WriteLine("Count is: " + mySecondLinkedList.Count);
-            mySecondLinkedList.RemoveFirst();
-            Console.WriteLine("Count is: " + mySecondLinkedList.Count);
-            mySecondLinkedList.RemoveFirst();
-            Console.WriteLine("Count is: " + mySecondLinkedList.Count);
-            mySecondLinkedList.RemoveFirst();
-            Console.WriteLine("Count is: " + mySecondLinkedList.Count);
-            mySecondLinkedList.RemoveFirst();
-            Console.WriteLine("Count is: " + mySecondLinkedList.Count);
-            mySecondLinkedList.RemoveFirst();
-            Console.WriteLine("Count is: " + mySecondLinkedList.Count);
+            //mySecondLinkedList.RemoveFirst();
+            //Console.WriteLine("Count is: " + mySecondLinkedList.Count);
+            //mySecondLinkedList.RemoveFirst();
+            //Console.WriteLine("Count is: " + mySecondLinkedList.Count);
+            //mySecondLinkedList.RemoveFirst();
+            //Console.WriteLine("Count is: " + mySecondLinkedList.Count);
+            //mySecondLinkedList.RemoveFirst();
+            //Console.WriteLine("Count is: " + mySecondLinkedList.Count);
+            //mySecondLinkedList.RemoveFirst();
+            //Console.WriteLine("Count is: " + mySecondLinkedList.Count);
+            //mySecondLinkedList.RemoveFirst();
+            //Console.WriteLine("Count is: " + mySecondLinkedList.Count);
+
+            foreach (var item in mySecondLinkedList)
+            {
+                Console.WriteLine(item);
+            }
+
 
         }
     }
