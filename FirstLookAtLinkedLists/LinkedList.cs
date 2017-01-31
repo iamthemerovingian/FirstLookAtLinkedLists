@@ -54,6 +54,8 @@ namespace FirstLookAtLinkedLists
             AddToEnd(new LinkedListNode<T>(value));
         }
 
+        //What if you added a node that was a member of another list and it was not the final node, it's next pointer would lead you to another list entirely.
+        // and then you would be enumerating in another list!!! how can you safeguard against this?
         public void AddToEnd(LinkedListNode<T> node)
         {
             if (Count == 0)
@@ -124,12 +126,7 @@ namespace FirstLookAtLinkedLists
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            LinkedListNode<T> currentNode = Head;
-            while (currentNode != null)
-            {
-                yield return currentNode.Value;
-                currentNode = currentNode.Next;
-            }
+            return GetEnumerator();
         }
 
         public void Add(T item)
@@ -139,7 +136,9 @@ namespace FirstLookAtLinkedLists
 
         public void Clear()
         {
-            RemoveFirst();
+            Head = null;
+            Tail = null;
+            Count = 0;
         }
 
         public bool Contains(T item)
@@ -160,12 +159,44 @@ namespace FirstLookAtLinkedLists
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            LinkedListNode<T> currentNode = Head;
+
+            while (currentNode != null)
+            {
+                array[arrayIndex++] = currentNode.Value;
+                currentNode = currentNode.Next;
+            }
         }
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            LinkedListNode<T> previousNode = null;
+            LinkedListNode<T> currentNode = null;
+
+            while (currentNode != null)
+            {
+                if (currentNode.Value.Equals(item))
+                {
+                    if (previousNode != null)
+                    {
+                        previousNode.Next = currentNode.Next;
+
+                        if (currentNode.Next == null)
+                        {
+                            Tail = previousNode;
+                        }
+                    }
+                    else
+                    {
+                        Remove(item);
+                    }
+
+                    return true;
+                }
+                previousNode = currentNode;
+                currentNode = currentNode.Next;
+            }
+            return false;
         }
     }
 }
