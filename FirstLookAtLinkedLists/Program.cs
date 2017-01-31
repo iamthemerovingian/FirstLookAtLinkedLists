@@ -17,17 +17,29 @@ namespace FirstLookAtLinkedLists
             LinkedListNode<int> nodeTwo = new LinkedListNode<int>() { Value = 2 };
             LinkedListNode<int> nodeThree = new LinkedListNode<int>() { Value = 3 };
 
-            myFirstLinkedList.AddToFront(nodeOne);
-            myFirstLinkedList.AddToFront(nodeTwo);
-            myFirstLinkedList.AddToFront(nodeThree);
+            //myFirstLinkedList.AddToFront(nodeOne);
+            //myFirstLinkedList.AddToFront(nodeTwo);
+            //myFirstLinkedList.AddToFront(nodeThree);
 
-            Console.WriteLine("Count is: " + myFirstLinkedList.Count);
+            //Console.WriteLine("Count is: " + myFirstLinkedList.Count);
 
             mySecondLinkedList.AddToEnd(nodeOne);
             mySecondLinkedList.AddToEnd(nodeTwo);
             mySecondLinkedList.AddToEnd(nodeThree);
 
             Console.WriteLine("Count is: " + mySecondLinkedList.Count);
+
+            mySecondLinkedList.RemoveLast();
+            Console.WriteLine("Count is: " + mySecondLinkedList.Count);
+            mySecondLinkedList.RemoveLast();
+            Console.WriteLine("Count is: " + mySecondLinkedList.Count);
+            mySecondLinkedList.RemoveLast();
+            Console.WriteLine("Count is: " + mySecondLinkedList.Count);
+            mySecondLinkedList.RemoveLast();
+            Console.WriteLine("Count is: " + mySecondLinkedList.Count);
+            mySecondLinkedList.RemoveLast();
+            Console.WriteLine("Count is: " + mySecondLinkedList.Count);
+
         }
     }
 }

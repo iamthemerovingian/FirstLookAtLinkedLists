@@ -31,13 +31,45 @@ namespace FirstLookAtLinkedLists
         {
             if (Count == 0)
             {
-                AddToFront(node);
+                Head = node;
             }
             else
             {
-                Count++;
                 Tail.Next = node;
-                Tail = node;
+            }
+
+            Count++;
+            Tail = node;
+        }
+
+        public void RemoveFirst()
+        {
+
+        }
+
+        public void RemoveLast()
+        {
+            if (Count != 0)
+            {
+                if (Count == 1)
+                {
+                    Head = null;
+                    Tail = null;
+                }
+                else
+                {
+                    LinkedListNode<T> currentNode = Head;
+
+                    while (currentNode.Next != Tail)
+                    {
+                        currentNode = currentNode.Next;
+                    }
+
+                    currentNode.Next = null;
+                    Tail = currentNode;
+                }
+
+                Count--;
             }
         }
     }
