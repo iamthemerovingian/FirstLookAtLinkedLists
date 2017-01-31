@@ -44,7 +44,19 @@ namespace FirstLookAtLinkedLists
 
         public void RemoveFirst()
         {
-
+            if (Count != 0)
+            {
+                if(Head.Next != null)
+                {
+                    Head = Head.Next;
+                }
+                else
+                {
+                    Head = null;
+                    Tail = null;
+                }
+                Count--;
+            }
         }
 
         public void RemoveLast()
