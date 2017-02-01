@@ -4,11 +4,11 @@ namespace FirstLookAtLinkedLists
 {
    
 
-    class LinkedList<T> : System.Collections.Generic.ICollection<T>
+    class DoublyLinkedList<T> : System.Collections.Generic.ICollection<T>
     {
-        public LinkedListNode<T> Head { get; private set; }
+        public DoublyLinkedListNode<T> Head { get; private set; }
 
-        public LinkedListNode<T> Tail { get; private set; }
+        public DoublyLinkedListNode<T> Tail { get; private set; }
         public int Count { get; private set; }
 
         public bool IsReadOnly
@@ -21,30 +21,35 @@ namespace FirstLookAtLinkedLists
 
         public void AddFirst(T value)
         {
-            AddToFront(new LinkedListNode<T>(value));
+            AddToFront(new DoublyLinkedListNode<T>(value));
         }
 
-        public void AddToFront(LinkedListNode<T> node)
+        public void AddToFront(DoublyLinkedListNode<T> node)
         {
-            LinkedListNode<T> temp = Head;
+            DoublyLinkedListNode<T> temp = Head;
             Head = node;
-            node.Next = temp;
+            Head.Next = temp;
+            
             Count++;
 
             if (Count == 1)
             {
                 Tail = Head;
             }
+            else
+            {
+                temp.Previous = Head;
+            }
         }
 
         public void AddLast(T value)
         {
-            AddToEnd(new LinkedListNode<T>(value));
+            AddToEnd(new DoublyLinkedListNode<T>(value));
         }
 
         // What if you added a node that was a member of another list and it was not the final node, it's next pointer would lead you to another list entirely.
         // and then you would be enumerating in another list!!! how can you safeguard against this?
-        public void AddToEnd(LinkedListNode<T> node)
+        public void AddToEnd(DoublyLinkedListNode<T> node)
         {
             if (Count == 0)
             {
@@ -53,6 +58,7 @@ namespace FirstLookAtLinkedLists
             else
             {
                 Tail.Next = node;
+                node.Previous = Tail;
             }
 
             Count++;
@@ -66,6 +72,7 @@ namespace FirstLookAtLinkedLists
                 if(Head.Next != null)
                 {
                     Head = Head.Next;
+                    Head.Previous = null;
                 }
                 else
                 {
@@ -87,15 +94,8 @@ namespace FirstLookAtLinkedLists
                 }
                 else
                 {
-                    LinkedListNode<T> currentNode = Head;
-
-                    while (currentNode.Next != Tail)
-                    {
-                        currentNode = currentNode.Next;
-                    }
-
-                    currentNode.Next = null;
-                    Tail = currentNode;
+                    Tail.Previous.Next = null;
+                    Tail = Tail.Previous;
                 }
 
                 Count--;
@@ -104,7 +104,7 @@ namespace FirstLookAtLinkedLists
 
         public System.Collections.Generic.IEnumerator<T> GetEnumerator()
         {
-            LinkedListNode<T> currentNode = Head;
+            DoublyLinkedListNode<T> currentNode = Head;
             while (currentNode != null)
             {
                 yield return currentNode.Value;
@@ -131,7 +131,7 @@ namespace FirstLookAtLinkedLists
 
         public bool Contains(T item)
         {
-            LinkedListNode<T> currentNode = Head;
+            DoublyLinkedListNode<T> currentNode = Head;
 
             while (currentNode != null)
             {
@@ -147,7 +147,7 @@ namespace FirstLookAtLinkedLists
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            LinkedListNode<T> currentNode = Head;
+            DoublyLinkedListNode<T> currentNode = Head;
 
             while (currentNode != null)
             {
@@ -158,30 +158,33 @@ namespace FirstLookAtLinkedLists
 
         public bool Remove(T item)
         {
-            LinkedListNode<T> previousNode = null;
-            LinkedListNode<T> currentNode = null;
+            DoublyLinkedListNode<T> currentNode = Head;
 
             while (currentNode != null)
             {
                 if (currentNode.Value.Equals(item))
                 {
-                    if (previousNode != null)
+                    if (currentNode.Previous != null)
                     {
-                        previousNode.Next = currentNode.Next;
+                        currentNode.Previous.Next = currentNode.Next;
 
                         if (currentNode.Next == null)
                         {
-                            Tail = previousNode;
+                            Tail = currentNode.Previous;
                         }
+                        else
+                        {
+                            currentNode.Next.Previous = currentNode.Previous;
+                        }
+
+                        Count--;
                     }
                     else
                     {
-                        Remove(item);
+                        RemoveFirst();
                     }
-
                     return true;
                 }
-                previousNode = currentNode;
                 currentNode = currentNode.Next;
             }
             return false;
