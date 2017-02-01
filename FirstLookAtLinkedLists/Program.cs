@@ -58,11 +58,11 @@ namespace FirstLookAtLinkedLists
             //    Console.WriteLine(item);
             //}
 
-            DoublyLinkedListNode<int> Node1 = new DoublyLinkedListNode<int>(1);
-            DoublyLinkedListNode<int> Node2 = new DoublyLinkedListNode<int>(2);
-            DoublyLinkedListNode<int> Node3 = new DoublyLinkedListNode<int>(3);
+            //DoublyLinkedListNode<int> Node1 = new DoublyLinkedListNode<int>(1);
+            //DoublyLinkedListNode<int> Node2 = new DoublyLinkedListNode<int>(2);
+            //DoublyLinkedListNode<int> Node3 = new DoublyLinkedListNode<int>(3);
 
-            DoublyLinkedList<int> myFirstDoublyLinkedList = new DoublyLinkedList<int>();
+            //DoublyLinkedList<int> myFirstDoublyLinkedList = new DoublyLinkedList<int>();
 
             //myFirstDoublyLinkedList.AddToFront(Node1);
             //myFirstDoublyLinkedList.AddToFront(Node2);
@@ -81,9 +81,9 @@ namespace FirstLookAtLinkedLists
             //myFirstDoublyLinkedList.RemoveFirst();
             //Console.WriteLine("Count is: " + myFirstDoublyLinkedList.Count);
 
-            myFirstDoublyLinkedList.AddToEnd(Node1);
-            myFirstDoublyLinkedList.AddToEnd(Node2);
-            myFirstDoublyLinkedList.AddToEnd(Node3);
+            //myFirstDoublyLinkedList.AddToEnd(Node1);
+            //myFirstDoublyLinkedList.AddToEnd(Node2);
+            //myFirstDoublyLinkedList.AddToEnd(Node3);
 
             //myFirstDoublyLinkedList.RemoveLast();
             //Console.WriteLine("Count is: " + myFirstDoublyLinkedList.Count);
@@ -94,7 +94,7 @@ namespace FirstLookAtLinkedLists
             //myFirstDoublyLinkedList.RemoveLast();
             //Console.WriteLine("Count is: " + myFirstDoublyLinkedList.Count);
 
-            myFirstDoublyLinkedList.Remove(1);
+            //myFirstDoublyLinkedList.Remove(1);
         }
     }
 }
